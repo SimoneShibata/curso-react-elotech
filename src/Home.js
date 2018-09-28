@@ -10,7 +10,7 @@ class Home extends Component {
       userLogged: '',
       tweets: [],
       tweet: {
-        message:'',
+        message: '',
         user: {
           name: 'Simone Shibata',
           user: 'simoneshibata'
@@ -24,7 +24,7 @@ class Home extends Component {
     this.setState(state => {
       return {
         tweet: {
-          message:'',
+          message: '',
           user: {
             name: 'Simone Shibata',
             user: 'simoneshibata'
@@ -60,23 +60,27 @@ class Home extends Component {
   }
 
   renderTweets = tweet => {
-    const date = new Intl.DateTimeFormat('pt-BR', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit', 
-      second: '2-digit' 
+    const date = new Intl.DateTimeFormat('pt-BR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
     }).format(tweet.date);
-    
+
     return (
-      <div key={tweet.date} className="tweet">
-        <div className="usuario img">
-          {tweet.user.name.split('')[0]}
+      <div key={tweet.date} className="card">
+        <div className="user-tweet">
+          <img className="img-user" src="https://avatars0.githubusercontent.com/u/8460276?s=460&v=4" alt="usuario" />
         </div>
-        <div className="mensagem">
-          <h6><span>{tweet.user.name}</span> @{tweet.user.user} {date}</h6>
-          <p>{tweet.message}</p>
+        <div>
+          <div className="title">
+            <h1><span>{tweet.user.name}</span> @{tweet.user.user} {date}</h1>
+          </div>
+          <div className="message">
+            <p>{tweet.message}</p>
+          </div>
         </div>
       </div>
     );
@@ -84,23 +88,30 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="App">
-        
-          <div className="tweetar">
-            <div className="usuario img">
-              S
-            </div>
-            <input name="message"
-              value={this.state.tweet.message} 
-              onKeyPress={this.keyPress} 
+      <React.Fragment>
+        <div className="header">
+          <div className="options">
+            <img className="img-user" src="https://avatars0.githubusercontent.com/u/8460276?s=460&v=4" alt="usuario" />
+            <input
+              className="input-tweet"
+              placeholder="O que está acontecendo?"
+              name="message"
+              value={this.state.tweet.message}
+              onKeyPress={this.keyPress}
               onChange={this.onChangeValue}
             />
-            <button className="ok-button" onClick={this.tweetar}>tweetar</button>
-          </div>
-          <div className="tweets">
-            {this.state.tweets.map(this.renderTweets)}
+            <span className="span-tweet">10/255</span>
+            <button className="button-tweet" onClick={this.tweetar}>tweetar</button>
           </div>
         </div>
+        <div className="container">
+          <div className="content">
+            <div className="content-body">
+              {this.state.tweets.map(this.renderTweets)}
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

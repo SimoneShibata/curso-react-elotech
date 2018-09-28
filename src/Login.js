@@ -57,11 +57,12 @@ class Login extends Component {
     }
 
     return (
-      <div>
+      <div className="container container-column container-center login-box">
         <input className="login-input" name="user" onChange={this.onChangeValue} value={this.state.user} />
         <input className="login-input" name="password" type="password" onChange={this.onChangeValue} value={this.state.password} />
         <button className="ok-button" onClick={this.login}>Login</button>
-        <button className="inverse-button" onClick={this.cadastrar}>Cadastrar</button>
+        <span>ou</span>
+        <button className="inverse-button" onClick={this.cadastrar}>Cadastre-se</button>
       </div>
     );
   }

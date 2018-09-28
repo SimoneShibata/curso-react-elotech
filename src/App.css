@@ -1,7 +1,23 @@
 .App {
   display: flex;
+  flex: 1;
   flex-direction: column;
   background-color: gainsboro;
+}
+
+.container {
+	display: flex;
+	flex: 1;
+}
+.container-column {
+  flex-direction: column;
+}
+.container-center {
+	justify-content: center;
+}
+.login-box {
+  min-width: 350px;
+  max-width: 50%;
 }
 
 .inverse-button {
@@ -25,9 +41,9 @@
 .login-input {
   border-radius: 30px;
   border: 1px solid grey;
-  margin: 0 10px;
   outline: none;
   padding: 0 10px;
+  margin-bottom: 15px;
 }
 
 .usuario.img {
