@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import Header from './Header.react';
+
 class Home extends Component {
 
   constructor(props) {
@@ -8,15 +10,7 @@ class Home extends Component {
 
     this.state = {
       userLogged: '',
-      tweets: [],
-      tweet: {
-        message: '',
-        user: {
-          name: 'Simone Shibata',
-          user: 'simoneshibata'
-        },
-        date: Date.now()
-      }
+      tweets: []
     }
   }
 
@@ -36,27 +30,10 @@ class Home extends Component {
     })
   }
 
-  onChangeValue = event => {
-    const value = event.target.value;
-
+  addTweet = tweet => {
     this.setState(state => {
-      return {
-        tweet: {
-          ...state.tweet,
-          message: value
-        }
-      }
-    })
-  }
-
-  keyPress = event => {
-    if (event.key === 'Enter') {
-      this.tweetar();
-    }
-  }
-
-  login = () => {
-    this.props.history.push('/login');
+      return { tweets: [...state.tweets, tweet] };
+    });
   }
 
   renderTweets = tweet => {
@@ -72,7 +49,7 @@ class Home extends Component {
     return (
       <div key={tweet.date} className="card">
         <div className="user-tweet">
-          <img className="img-user" src="https://avatars0.githubusercontent.com/u/8460276?s=460&v=4" alt="usuario" />
+          <img src="https://avatars0.githubusercontent.com/u/8460276?s=460&v=4" alt="usuario" />
         </div>
         <div>
           <div className="title">
@@ -89,21 +66,7 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="header">
-          <div className="options">
-            <img className="img-user" src="https://avatars0.githubusercontent.com/u/8460276?s=460&v=4" alt="usuario" />
-            <input
-              className="input-tweet"
-              placeholder="O que está acontecendo?"
-              name="message"
-              value={this.state.tweet.message}
-              onKeyPress={this.keyPress}
-              onChange={this.onChangeValue}
-            />
-            <span className="span-tweet">10/255</span>
-            <button className="button-tweet" onClick={this.tweetar}>tweetar</button>
-          </div>
-        </div>
+        <Header addTweet={this.addTweet} />
         <div className="container">
           <div className="content">
             <div className="content-body">

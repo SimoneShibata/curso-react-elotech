@@ -19,13 +19,21 @@ class App extends Component {
     this.setState({ userLogged: user })
   }
 
+  // render() {
+  //   return (
+  //     <BrowserRouter>
+  //       {this.state.userLogged 
+  //         ? Routes()
+  //         : <Login logar={this.logar} />
+  //       }
+  //     </BrowserRouter>
+  //   );
+  // }
+  
   render() {
     return (
       <BrowserRouter>
-        {this.state.userLogged 
-          ? Routes()
-          : <Login logar={this.logar} />
-        }
+          {Routes()}
       </BrowserRouter>
     );
   }
